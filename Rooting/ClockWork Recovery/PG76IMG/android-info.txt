@@ -1,0 +1,5 @@
+modelid: PG7610000
+cidnum: HTC__622
+mainver: 1.35.832.5
+hbootpreupdate:13
+DelCache: 1
