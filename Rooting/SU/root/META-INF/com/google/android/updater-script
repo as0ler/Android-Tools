@@ -1,0 +1,29 @@
+ui_print("  ");
+ui_print(" +++++ hi! Welcome +++++  ");
+ui_print("  ");
+show_progress(0.1, 0);
+mount("MTD", "system", "/system");
+show_progress(0.6, 10);	
+ui_print("Flashing SYSTEM:...");
+package_extract_dir("system", "/system");
+set_perm(0, 0, 06755, "/system/bin/su");
+symlink("/system/bin/su", "/system/xbin/su");
+set_perm(0, 1000, 0755, "/system/xbin/busybox");
+set_perm(0, 1000, 0755, "/system/xbin/tcpdump”);
+
+show_progress(0.2, 10);
+unmount("/system");
+
+ui_print(" ");
+ui_print("Finished...");
+
+ui_print(" ");
+ui_print(" ");
+
+
+ui_print("---The upgrade is complete---");
+ui_print(" ");
+ui_print(" ");
+ui_print("--- xda.cn ---");
+ui_print(" ");
+ui_print(" ");
