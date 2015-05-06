@@ -1,0 +1,169 @@
+             ============================
+             =                          =
+             =      The GNU Netcat      =
+             =                          =
+             =        NEWS FILE         =
+             =                          =
+             ============================
+
+
+
+* Netcat 0.7.1 - 11 Jan 2004 - Release Notes
+
+Another bugfix release mainly focused on portability that was made
+possible by submitted bug reports. If you find something wrong with
+this release, always use the SourceForge bug tracking system.
+This release also represents the branch point for the first stable
+series.
+Next development version, 0.8, will introduce a code restyling, and
+the IPv6 support.
+If you want to contribute with ideas/code/documentation contact me.
+
+
+
+* Netcat 0.7.0 - 21 Aug 2003 - Release Notes
+
+This new Netcat version was supposed to be released as 0.6.2, but
+a lot of time passed since the previous release, so I decided
+to release it as 0.7.0, including some new core handler code and
+various bugfixes.
+Because of the planned version number, this release should be quite
+stable and usable, but only time will show it.
+
+Main introduced features are:
+- Command line switch `-c' to terminate on EOF from stdin
+- New signal handling code.  You can now "kill -USR1 netcat's pid"
+  to make it printing partial statistics (sent/received bytes).
+- New DNS resolver functions, which will now print more precise
+  information about the target host if ran in verbose mode.
+- Support for large amount of data, you can now dump big files or
+  streams on fast lines.
+
+
+
+* Netcat 0.6.1 - 15 Sep 2002 - Release Notes
+
+A bugfix release for the 0.6 major version.  This version may be
+the last one for a long period, but it should be enough stable
+to stick to.
+Most important fix is indeed the Solaris related code added, that
+makes it able to use Netcat's UDP features on this OS too.  Other
+fixes are in compilation scripts and internal socket code.  It
+should also be a bit faster.  Always report bugs to the Netcat
+bug tracking system on SourceForge.
+
+
+
+* Netcat 0.6.0 - 22 Aug 2002 - Release Notes
+
+The summer brought advice and this is the new major release of
+Netcat.  In this version many important improvements and fixes
+are introduced, like the new UDP protocol routines and the ability
+to cross-protocol bridge between TCP and UDP in tunnel mode, and
+the new signal handling functions that allow sockets to be cleanly
+closed and shutdown before Netcat terminates.
+Also some portability problems were fixed but there is still
+something to do to achieve a good cross-platform support.
+This version introduces much new development code and thus may
+contain bugs.  Please test a lot and always report bugs through
+the Netcat bug tracking system.
+
+
+
+* Netcat 0.5.2 - 18 Jun 2002 - Release Notes
+
+This is another bugfix release that includes a lot of very important
+bugfixes like a better handling of unexpected situations and
+improved error messages and verbose info messages. A first version
+of the documentation (man page and info page) is now fully complete.
+All Netcat users are encouraged to download and try this new version
+and to report bugs.
+
+
+
+* Netcat 0.5.1 - 10 Jun 2002 - Release Notes
+
+And here it is the bugfix release.  This version of Netcat should
+be much more stable than the previous one.
+Most important fixes are the UDP listen mode which caused one
+packet to be lost, and a internal problem causing a "socket
+already in use" error which shouldn't happen.
+There are also many fixes for the portability.  Netcat now
+compiles correctly under Solaris and some other OSes.
+
+
+
+* Netcat 0.5.0 - 31 May 2002 - Release Notes
+
+This version introduces a new internal socket interface which
+allows a better new features support.  The UDP protocol and
+the tunnel mode are also greatly improved from the previous
+versions.
+Note that there have been an important command line interface
+change about the tcp/telnet switches.  The new telnet switch
+is now `-T', while the tcp protocol selection took the old
+`-t' switch.  The configure option --enable-compat restores
+the old interface.
+Fixed also many minor bugs.
+
+
+
+* Netcat 0.4.0 - 15 May 2002 - Release Notes
+
+The first beta version of GNU Netcat!
+This should be self-explanatory, but I will write some
+basic notes anyway.
+Main netcat functions, like the UDP support, the telnet protocol
+support, and the zero-I/O mode (used for scanning) are now
+restored, and many bugs have been fixed, improving notably
+the stability.
+Another important addition is the configure command option
+`--enable-compat', which turnes on ALL the backwards
+compatibility support available in the GNU Netcat.
+Refer to ChangeLog for a full list of changes.
+
+
+
+* Netcat 0.3.1 - 9 May 2002 - Release Notes
+
+This is the usual bugfix release following a major release.
+In this release many smaller things are improved and fixed,
+which makes it a stabler version good for testing and bug
+reporting.
+New features will be added for the next major release, so
+if you have any suggestion or feature request this is the
+right time to submit them.
+
+
+
+* Netcat 0.3.0 - 6 May 2002 - Release Notes
+
+Here it is, finally the first fully rewritten release is out!
+In this release there is the new core part of the program that
+allows me to start the real work.  From now on I will be able
+to implement many more new features.
+Please remember that this release is still "alpha" and there
+are many known bugs, but feel free to report any bug or broken
+feature that you may experience testing the package.
+
+
+
+* Netcat 0.2.2 - 1 May 2002 - Release Notes
+
+This is a bugfix release that introduces the contrib library,
+containing all the library functions that should be supported
+by the System.
+This version also updates translation files and improves input
+validity checks for port numbers.
+
+
+
+* Netcat 0.2.1 - 30 Apr 2002 - Release Notes
+
+Surely the most important change in this release is the Native
+Language Support addition.
+
+Another important addition is the configure option
+`--enable-oldhexdump', which remarks one of the most important
+points of this project, the full compatibility with the
+original nc110.

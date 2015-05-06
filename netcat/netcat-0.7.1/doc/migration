@@ -1,0 +1,105 @@
+	doc/migration
+	Part of the GNU netcat project
+
+	Copyright (C) 2002  Giovanni Giacobbi
+
+	This program is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2, or (at your option)
+	any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+
+* INDEX
+
+  1.  Introduction to the migration from nc110 to GNU Netcat
+  2.  Main differences with nc110
+  2.1.  Important incompatibilities and possible solutions
+  2.2.  Fixes and additions to the project design
+  3.  What's new in the new core 0.3.0
+
+
+
+* 1.  Introduction to the migration from nc110 to GNU Netcat
+
+  ...TODO...
+
+
+
+* 2.  Main differences with nc110
+
+
+
+* 2.1.  Important incompatibilities and possible solutions
+
+   o The hexdump output style (the option activated with -o filename), is
+     different.  My new style has a better readability and it is more
+     standard.  The configure option `--enable-oldhexdump' is provided in
+     order to allows total backward compatibility to scripts that for example
+     automatically parse the output file.
+
+   o The command line switch `-t', which enables incoming telnet codes parsing
+     and acknowledgment, rewrites the buffer with those codes stripped out,
+     which means that they won't be seen in the standard output nor in the
+     hexdump (if active).  This behaviour differs from nc110.
+
+   o The source routing hops support (`-g' and `-G' command line switches are
+     not supported yet.  Anyway they will be hopefully implemented as soon as
+     possible and before any stable release.
+
+   o The telnet code enabler command line switch is `-T' instead of the original
+     implementation's `-t'.  The `-t' switch now means "tcp" because of the
+     tunnel feature of GNU Netcat.  The configure option `--enable-compat'
+     restores the old command line option overriding the tcp option that
+     will only be available in the long form (`--tcp').
+
+
+
+* 2.2.  Fixes and additions to the project design
+
+   o Now the command line switch `-n' (numeric) applies only for DNS hostname
+     lookups and portnames are still resolved normally even if a `-n' is given.
+     There is no backward compatibility for this issue, and that is because
+     there are actually no reasons to disallow direct port names lookups.
+
+   o Source (local) port is no longer randomly-generated while connecting or
+     listening without port specification (-p), but rather it is
+     randomly-assigned by the OS (actually the OS assigns the ports
+     sequentially but we don't care, there are no reasons for randomizing
+     source ports.  If you really need to use a random port then enforce it
+     with the `-p' option.
+
+   o The random (`-r') option issued with different ranges now randomizes each
+     port in the whole space instead of randomizing inside each given range.
+     There is no backward compatibility support for this.
+
+   o When a port range is specified, runs throught the range from lowest
+     number to the highest, while nc110 runs throught the hightest to
+     the lowest number.
+
+   o The timeout system was broken for port-scanning or multiple ports
+     connections (it applied only for the first attempt).
+
+   o The Zero I/O mode command line switch (`-z') associated with the listen
+     mode (`-l') now causes all incoming connections to be refused.  This
+     particular situation was NOT handled in the old nc110 as it simply
+     discarded the Zero I/O option while listening.
+
+
+
+* 3. What's new in the new core 0.3.0
+
+   o The socket timeouts are now implemented with asynchronous sockets rather
+     than with the alarm(2) method, which is a really weak implementation.
+
+   o Fixed the delayed sending not displaying incoming data immediately (there
+     was no reason to hold the data in the socket while buffering outgoing
+     data).
+
+   o It randomizes the target ports in the whole selected range rather than the
+     single sub-ranges given on the command line.
+

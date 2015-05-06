@@ -1,0 +1,374 @@
+# Slovak translation for the GNU Netcat package.
+# Copyright (C) 2002-2003 Lubomir Sedlacik
+# This file is distributed under the same license as the GNU netcat package.
+# Lubomir Sedlacik <salo@Xtrmntr.org>, 2003.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: netcat 0.6.1\n"
+"POT-Creation-Date: 2004-01-03 17:17+0100\n"
+"PO-Revision-Date: 2002-09-19 21:17+0200\n"
+"Last-Translator: Lubomir Sedlacik <salo@Xtrmntr.org>\n"
+"Language-Team: sk <sk@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-2\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/core.c:151 src/core.c:438
+#, c-format
+msgid "Listening on %s"
+msgstr "Poèúvam na %s"
+
+#: src/core.c:154
+#, c-format
+msgid "Listening on %s (using %d sockets)"
+msgstr "Poèúvam na %s (pou¾ívam %d socketov)"
+
+#: src/core.c:237
+#, c-format
+msgid "Received packet from %s:%d -> %s:%d (local)"
+msgstr "Prijatý paket z %s:%d -> %s:%d (lokálne)"
+
+#: src/core.c:243
+#, c-format
+msgid "Received packet from %s:%d"
+msgstr "Prijatý paket z %s:%d"
+
+#: src/core.c:383
+#, c-format
+msgid "%s open"
+msgstr "%s otvorené"
+
+#: src/core.c:421
+#, c-format
+msgid "Couldn't setup listening socket (err=%d)"
+msgstr ""
+
+#: src/core.c:465
+#, c-format
+msgid "Unwanted connection from %s:%hu (refused)"
+msgstr "Ne¾iadúce spojenie z %s:%hu (odmietnuté)"
+
+#: src/core.c:469
+#, c-format
+msgid "Connection from %s:%hu"
+msgstr "Spojenie z %s:%hu"
+
+#: src/misc.c:187
+msgid "Error:"
+msgstr "Chyba:"
+
+#: src/misc.c:190
+msgid "Warning:"
+msgstr "Varovanie:"
+
+#: src/misc.c:193
+msgid "Notice:"
+msgstr ""
+
+#: src/misc.c:231
+#, c-format
+msgid ""
+"Total received bytes: %s\n"
+"Total sent bytes: %s\n"
+msgstr ""
+"Celkove prijatých bajtov: %s\n"
+"Celkove poslaných bajtov: %s\n"
+
+#: src/misc.c:268
+msgid "Cmd line:"
+msgstr "Príkazový riadok:"
+
+#: src/misc.c:306
+#, c-format
+msgid "GNU netcat %s, a rewrite of the famous networking tool.\n"
+msgstr "GNU netcat %s, prepísaná verzia populárneho sie»ového nástroja.\n"
+
+#: src/misc.c:307
+msgid "Basic usages:\n"
+msgstr "Základne pou¾itie:\n"
+
+#: src/misc.c:308
+#, c-format
+msgid "connect to somewhere:  %s [options] hostname port [port] ...\n"
+msgstr "pripoji» sa niekam:    %s [voµby] hostname port [port] ...\n"
+
+#: src/misc.c:309
+#, c-format
+msgid "listen for inbound:    %s -l -p port [options] [hostname] [port] ...\n"
+msgstr "oèakáva» spojenie:     %s -l -p port [voµby] [hostname] [port] ...\n"
+
+#: src/misc.c:310
+#, c-format
+msgid "tunnel to somewhere:   %s -L hostname:port -p port [options]\n"
+msgstr "vytvori» tunel niekam: %s -L hostname:port -p port [voµby]\n"
+
+#: src/misc.c:312
+msgid ""
+"Mandatory arguments to long options are mandatory for short options too.\n"
+msgstr "Povinné parametre pre dlhé voµby sú povinné i pre krátke voµby.\n"
+
+#: src/misc.c:313
+#, fuzzy
+msgid ""
+"Options:\n"
+"  -c, --close                close connection on EOF from stdin\n"
+"  -e, --exec=PROGRAM         program to exec after connect\n"
+"  -g, --gateway=LIST         source-routing hop point[s], up to 8\n"
+"  -G, --pointer=NUM          source-routing pointer: 4, 8, 12, ...\n"
+"  -h, --help                 display this help and exit\n"
+"  -i, --interval=SECS        delay interval for lines sent, ports scanned\n"
+"  -l, --listen               listen mode, for inbound connects\n"
+msgstr ""
+"Voµby:\n"
+"  -e, --exec=PROGRAM         program, ktorý sa spustí po pripojení\n"
+"  -g, --gateway=ZOZNAM       bod[y] pre source-routing, najviac 8\n"
+"  -G, --pointer=POÈET        source-routing pointer: 4, 8, 12, ...\n"
+"  -h, --help                 vypísa» tento zoznam a ukonèi» sa\n"
+"  -i, --interval=SEKUNDY     pozdr¾a» posielané riadky, skenované porty\n"
+"  -l, --listen               poèúva» príchodzie spojenia\n"
+"  -L, --tunnel=ADRESA:PORT   presmerova» lokálny port na vzdialenú adresu\n"
+
+#: src/misc.c:321
+#, fuzzy
+msgid ""
+"  -L, --tunnel=ADDRESS:PORT  forward local port to remote address\n"
+"  -n, --dont-resolve         numeric-only IP addresses, no DNS\n"
+"  -o, --output=FILE          output hexdump traffic to FILE (implies -x)\n"
+"  -p, --local-port=NUM       local port number\n"
+"  -r, --randomize            randomize local and remote ports\n"
+"  -s, --source=ADDRESS       local source address (ip or hostname)\n"
+msgstr ""
+"  -n, --dont-resolve         iba èíselné IP adresy, bez DNS\n"
+"  -o, --output=FILE          ulo¾i» obsah spojenia v hex do FILE (zahàòa -"
+"x)\n"
+"  -p, --local-port=NUM       èíslo lokálneho portu\n"
+"  -r, --randomize            náhodné èísla lokálnych a vzdialených portov\n"
+"  -s, --source=ADDRESS       lokálna zdrojová adresa (ip alebo hostname)\n"
+
+#: src/misc.c:329
+msgid ""
+"  -t, --tcp                  TCP mode (default)\n"
+"  -T, --telnet               answer using TELNET negotiation\n"
+msgstr ""
+"  -t, --tcp                  TCP mód (východzie)\n"
+"  -T, --telnet               odpoveda» s pou¾itím TELNET negotiation\n"
+
+#: src/misc.c:333
+msgid ""
+"      --tcp                  TCP mode (default)\n"
+"  -t, --telnet               answer using TELNET negotiation\n"
+"  -T                         same as --telnet (compat)\n"
+msgstr ""
+"      --tcp                  TCP mód (východzie)\n"
+"  -t, --telnet               odpoveda» s pou¾itím TELNET negotiation\n"
+"  -T                         rovnaké ako --telnet (kompatibilita)\n"
+
+#: src/misc.c:338
+msgid ""
+"  -u, --udp                  UDP mode\n"
+"  -v, --verbose              verbose (use twice to be more verbose)\n"
+"  -V, --version              output version information and exit\n"
+"  -x, --hexdump              hexdump incoming and outgoing traffic\n"
+"  -w, --wait=SECS            timeout for connects and final net reads\n"
+"  -z, --zero                 zero-I/O mode (used for scanning)\n"
+msgstr ""
+"  -u, --udp                  UDP mód\n"
+"  -v, --verbose              ukecaný (dva krát pre vaè¹iu ukecanos»)\n"
+"  -V, --version              vypísa» verziu a ukonèi» sa\n"
+"  -x, --hexdump              vypísa» príchodzie a odchodzie spojenia v hex\n"
+"  -w, --wait=SECS            vyèkávacia doba pre spojenia a èítanie zo "
+"siete\n"
+"  -z, --zero                 nulový-I/O mód (pou¾íva sa pri skenovaní)\n"
+
+#: src/misc.c:346
+msgid "Remote port number can also be specified as range.  Example: '1-1024'\n"
+msgstr ""
+"Èíslo vzdialeného portu mô¾e by» definované i ako rozsah. Príklad: '1-1024'\n"
+
+#: src/misc.c:356
+msgid ""
+"Copyright (C) 2002 - 2003  Giovanni Giacobbi\n"
+"\n"
+"This program comes with NO WARRANTY, to the extent permitted by law.\n"
+"You may redistribute copies of this program under the terms of\n"
+"the GNU General Public License.\n"
+"For more information about these matters, see the file named COPYING.\n"
+"\n"
+"Original idea and design by Avian Research <hobbit@avian.org>,\n"
+"Written by Giovanni Giacobbi <giovanni@giacobbi.net>.\n"
+msgstr ""
+"Copyright (C) 2002 - 2003  Giovanni Giacobbi\n"
+"\n"
+"Tento program je ¹írený BEZ AKÝCHKO¥VEK ZÁRUK, v rozsahu umo¾nenom zákonom.\n"
+"Kópie tohto programu je mo¾né ïalej ¹íri» pod podmienkami\n"
+"GNU General Public License.\n"
+"Pre detailnej¹ie informácie, viï súbor nazvaný COPYING.\n"
+"\n"
+"Pôvodná idea a dizajn Avian Research <hobbit@avian.org>,\n"
+"Napísal Giovanni Giacobbi <giovanni@giacobbi.net>.\n"
+
+#: src/netcat.c:69
+msgid "Terminated."
+msgstr "Ukonèené."
+
+#: src/netcat.c:80
+msgid "Exiting."
+msgstr "Ukonèujem."
+
+#: src/netcat.c:132
+#, c-format
+msgid "Couldn't execute %s: %s"
+msgstr "Nie je mo¾né spusti» %s: %s"
+
+#: src/netcat.c:234
+msgid "Cannot specify `-e' option double"
+msgstr "Nie je mo¾né viackrát zvoli» '-e' parameter"
+
+#: src/netcat.c:248
+#, c-format
+msgid "Invalid interval time \"%s\""
+msgstr "Chybný èas intervalu \"%s\""
+
+#: src/netcat.c:253 src/netcat.c:259
+msgid "You can specify mode flags (`-l' and `-L') only once"
+msgstr ""
+
+#: src/netcat.c:262 src/netcat.c:349
+msgid "`-L' and `-z' options are incompatible"
+msgstr "Voµby `-L' a `-z' nie sú navzájom kompatibilné"
+
+#: src/netcat.c:270
+msgid "Invalid target string for `-L' option"
+msgstr "Neplatný cieµový re»azec pre `-L' voµbu"
+
+#: src/netcat.c:275
+#, c-format
+msgid "Couldn't resolve tunnel target host: %s"
+msgstr "Nebolo mo¾né nájs» DNS záznam pre cieµový host tunela: %s"
+
+#: src/netcat.c:278
+#, c-format
+msgid "Invalid tunnel target port: %s"
+msgstr "Neplatný port pre cieµový host tunela: %s"
+
+#: src/netcat.c:294
+#, c-format
+msgid "Invalid local port: %s"
+msgstr "Neplatný lokálny port: %s"
+
+#: src/netcat.c:300
+#, c-format
+msgid "Invalid tunnel connect port: %s"
+msgstr "Neplatný port pre lokálnu stranu tunela: %s"
+
+#: src/netcat.c:309
+#, c-format
+msgid "Couldn't resolve local host: %s"
+msgstr "Nebolo mo¾né nájs» DNS záznam pre lokálny host: %s"
+
+#: src/netcat.c:314
+#, c-format
+msgid "Couldn't resolve tunnel local host: %s"
+msgstr "Nebolo mo¾né nájs» DNS záznam pre lokálnu stranu tunela: %s"
+
+#: src/netcat.c:340
+#, c-format
+msgid "Invalid wait-time: %s"
+msgstr "Neplatná vyèkávacia doba: %s"
+
+#: src/netcat.c:353 src/netcat.c:535
+#, c-format
+msgid "Try `%s --help' for more information."
+msgstr "Skúste `%s --help' pre viac informácií."
+
+#: src/netcat.c:359
+#, fuzzy
+msgid "`-e' and `-z' options are incompatible"
+msgstr "Voµby `-L' a `-z' nie sú navzájom kompatibilné"
+
+#: src/netcat.c:368
+#, fuzzy
+msgid ""
+"Debugging support not compiled, option `-d' discarded. Using maximum "
+"verbosity."
+msgstr "Podpora ladenia nie je zakompilovaná, voµba `-d' vypustená."
+
+#: src/netcat.c:377
+msgid "Randomization support not compiled, option `-r' discarded."
+msgstr ""
+"Podpora generovania náhodnosti nie je zakompilovaná, voµba `-r' vypustená."
+
+#: src/netcat.c:384
+#, c-format
+msgid "Failed to open output file: %s"
+msgstr "Nepodarilo sa otvori» súbor: %s"
+
+#: src/netcat.c:397
+#, c-format
+msgid "Couldn't resolve host \"%s\""
+msgstr "Nebolo mo¾né nájs» DNS záznam pre \"%s\""
+
+#: src/netcat.c:444
+#, c-format
+msgid "Invalid port specification: %s"
+msgstr "Neplatná ¹pecifikácia portu: %s"
+
+#: src/netcat.c:487
+#, c-format
+msgid "Listen mode failed: %s"
+msgstr "Poèúvací mód zlyhal: %s"
+
+#: src/netcat.c:496 src/netcat.c:596
+msgid "Passing control to the specified program"
+msgstr "Prenechávam kontrolu ¹pecifikovanému programu"
+
+#: src/netcat.c:534
+#, c-format
+msgid "%s: missing hostname argument"
+msgstr "%s: chýbajúci parameter `hostname'"
+
+#: src/netcat.c:542
+msgid "No ports specified for connection"
+msgstr "Pre spojenie neboli ¹pecifikované ¾iadne porty"
+
+#: src/network.c:95 src/network.c:159
+#, fuzzy, c-format
+msgid "Inverse name lookup failed for `%s'"
+msgstr "inverzné vyhµadanie mena pre `%s' zlyhalo"
+
+#: src/network.c:131
+#, c-format
+msgid "This host's reverse DNS doesn't match! %s -- %s"
+msgstr "Reverzný DNS záznam pre host sa nezhoduje! %s -- %s"
+
+#: src/network.c:137
+#, c-format
+msgid "Real hostname for %s [%s] is %s"
+msgstr ""
+
+#: src/network.c:170
+#, c-format
+msgid "Host %s isn't authoritative! (direct lookup failed)"
+msgstr "Host %s nie je autoritatívny! (priame vyhµadanie zlyhalo)"
+
+#: src/network.c:180
+#, c-format
+msgid "Host %s isn't authoritative! (direct lookup mismatch)"
+msgstr "Host %s nie je autoritatívny! (priame vyhµadanie sa nezhoduje)"
+
+#: src/network.c:182
+#, c-format
+msgid "  %s -> %s  BUT  %s -> %s"
+msgstr "  %s -> %s  ALE  %s -> %s"
+
+#: src/network.c:289
+msgid "any address"
+msgstr "akejkoµvek adrese"
+
+#, fuzzy
+#~ msgid "Inverse host lookup failed for %s"
+#~ msgstr "inverzné vyhµadanie pre host `%s' zlyhalo"
+
+#~ msgid "`-L' and `-l' options are incompatible"
+#~ msgstr "Voµby `-L' a `-l' nie sú navzájom kompatibilné"

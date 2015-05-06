@@ -1,0 +1,57 @@
+
+	doc/drafts/migration
+	Part of the GNU netcat project
+
+	Copyright (C) 2002 - 2003  Giovanni Giacobbi
+
+	This program is free software; you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation; either version 2, or (at your option)
+	any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+
+
+ This directory contains the documentation files of the GNU Netcat project.
+
+
+ corerw.xml
+
+   Flowchar in DIA format of the core_readwrite() function, which is the heart of
+   netcat.  You can find generated sheets in various formats on the official web
+   site.
+
+
+ resolve.xml
+
+   ...
+
+
+ rfc0768.txt
+
+   ...
+
+
+ rfc0791.txt
+
+   ...
+
+
+ rfc0854.txt
+
+   ...
+
+
+ rfc2292.txt
+
+   Advanced Sockets API for IPv6
+
+   This RFC explains various sockets APIs for both IPv6 and IPv4.  Netcat in particular
+   uses the IN_PKTINFO extension for IPv4 in order to know which interface received an
+   UDP packet, when bound to INADDR_ANY.
+   Only a few OSes have this extension (read only Linux), so the other solution is to
+   create a listening UDP socket for each possible interface.

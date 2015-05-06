@@ -1,0 +1,328 @@
+\input texinfo   @c -*-texinfo-*-
+
+@c $Id: netcat.texi,v 1.10 2004/01/03 16:19:33 themnemonic Exp $
+
+@c %**start of header
+@setfilename netcat.info
+@settitle GNU Netcat Manual
+@c Disable the monstrous rectangles beside overfull hbox-es.
+@finalout
+@c Use `odd' to print double-sided.
+@setchapternewpage on
+@c %**end of header
+
+@iftex
+@c Remove this if you don't use A4 paper.
+@afourpaper
+@end iftex
+
+@c Include the auto-generated version and package information
+@include version.texi
+
+@dircategory Net Utilities
+@direntry
+* Netcat: (netcat).     The GNU famous networking tool.
+@end direntry
+
+@ifinfo
+This file documents the Netcat utility for network operations data.
+
+@c man begin COPYRIGHT
+Copyright @copyright{} 2002 - 2004  Giovanni Giacobbi
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+@ignore
+Permission is granted to process this file through TeX and print the
+results, provided the printed document carries a copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual).
+@end ignore
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being ``GNU General Public License'' and ``GNU Free
+Documentation License'', with no Front-Cover Texts, and with no
+Back-Cover Texts.  A copy of the license is included in the section
+entitled ``GNU Free Documentation License''.
+@c man end
+@end ifinfo
+
+@titlepage
+@title GNU Netcat
+@subtitle The famous networking tool
+@author by Giovanni Giacobbi
+
+@ignore
+@c man begin AUTHOR
+Originally written by Giovanni Giacobbi <giovanni@giacobbi.net>.
+@c man end
+@c man begin SEEALSO
+GNU Info entry for @file{netcat}.
+@c man end
+@end ignore
+
+@c The following two commands start the copyright page.
+@page
+@vskip 0pt plus 1filll
+Copyright @copyright{} 1996, 1997, 1998, 2000, 2001 Free Software
+Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being ``GNU General Public License'' and ``GNU Free
+Documentation License'', with no Front-Cover Texts, and with no
+Back-Cover Texts.  A copy of the license is included in the section
+entitled ``GNU Free Documentation License''.
+@end titlepage
+
+@c really use ifinfo here? i would ifinfo only those 4 lines below
+@ifinfo
+@node Top, Overview, (dir), (dir)
+@top Netcat @value{VERSION}
+
+This manual documents version @value{VERSION} of GNU Netcat, the freely
+available utility for network connections.
+
+Copyright @copyright{} 1996, 1997, 1998, 2000, 2001 Free Software
+Foundation, Inc.
+
+@menu
+* Overview::            Features of netcat.
+* Invoking::            Netcat command-line arguments.
+* The Connect Mode::    Using netcat in the connect mode.
+* The Listen Mode::     Using netcat in the listen mode.
+* The Tunnel Mode::     Using netcat in the tunnel mode.
+* Examples::            Examples of usage.
+@end menu
+@end ifinfo
+
+@node Overview, Invoking, Top, Top
+@chapter Overview
+@cindex overview
+@cindex features
+
+@c man begin DESCRIPTION
+Netcat is a simple Unix utility which reads and writes data across network
+connections, using TCP or UDP protocol.
+It is designed to be a reliable "back-end" tool that can be used directly
+or easily driven by other programs and scripts.  At the same time, it is
+a feature-rich network debugging and exploration tool, since it can create
+almost any kind of connection you would need and has several interesting
+built-in capabilities.  Netcat, or "nc" as the original program was named,
+should have been supplied long ago as another one of those cryptic but
+standard Unix tools.
+
+@c man end
+
+@node Invoking, The Connect Mode, Overview, Top
+@chapter Invoking
+@cindex invoking
+
+@c man begin DESCRIPTION
+Netcat has three main modes of functionality.  These are the connect mode,
+the listen mode, and the tunnel mode.
+
+The most common mode is the connect mode, which for example allows the output
+of a locally called command to be redirected for example to a remote netcat
+listening or to any other kind of daemon waiting for a connection.
+
+On the other hand, the listen mode can be used to obtain some kind of stream
+of data from a remote site.
+
+The most new feature is the tunnel mode, which is a powerful and reliable
+mode that allows tunneling a remote site towards any other remote site,
+allowing to specify for example from which interface create the connection
+and from which port.
+
+@c man end
+
+@menu
+* Basic Startup Options::
+* Protocol and Interface Options::
+* Advanced Options::
+@end menu
+
+@c man begin OPTIONS
+
+@node Basic Startup Options, Protocol and Interface Options, Invoking, Invoking
+@section Basic Startup Options
+
+@table @samp
+@item -V
+@itemx --version
+Display the version of netcat and exit.
+
+@item -h
+@itemx --help
+Print a help message describing most common netcat's command-line switches and
+a short description.
+
+@item -v
+@itemx --verbose
+Prints status messages, usually needed for using netcat as user front-end.  All
+messages are printed to stderr in order not to affect the data stream.
+
+Use this option double to get more messages.
+@end table
+
+@node Protocol and Interface Options, Advanced Options, Basic Startup Options, Invoking
+@section Protocol and Interface Options
+
+@table @samp
+@item -t
+@itemx --tcp
+Selects the TCP protocol, this is the default.  It may be useful (see Tunnel Mode)
+to specify this option after for example the UDP option in order to allow a
+cross-protocol bridge between TCP and UDP.
+
+@item -u
+@itemx --udp
+Selects the UDP protocol.  See the --tcp option.
+
+@item -p NUM
+@itemx --local-port=NUM
+@c that "listen mode" must be a link
+Selects the local port.  In listen and tunnel mode, it specifies which port
+to use for listening, while in connect mode it specifies the source port (the
+port from which originating the connection).
+
+If this option is not specified, the OS will assign a random available port.
+
+@item -s ADDRESS
+@itemx --source=ADDRESS
+Specifies the source address used for creating sockets.  In listen mode and
+tunnel mode this switch specifies the bound address, and it is generally a
+good idea not to specify this, which causes netcat to bind to a generic
+interface.
+In the connect mode, this switch is used to specify the source address for
+connecting to the outside world.  Again, if it's not specified a proper
+address for the destination route will be used.
+
+@item -P NUM
+@itemx --tunnel-port=NUM
+Same as --port, but affects only the connect phase (thus this option has no
+effect in listen mode).  This switch is useful in tunnel mode for specifying
+the source port for the connecting socket.
+
+@item -S ADDRESS
+@itemx --tunnel-source=ADDRESS
+Same as --source, but affects only the connect phase (thus this has no effects
+in listen mode).  This switch is useful in tunnel mode for specifying the
+source address for the connecting socket.
+
+@end table
+
+@node Advanced Options,  , Protocol and Interface Options, Invoking
+@section Advanced Options
+
+@table @samp
+@item -i SECS
+@itemx --interval SECS
+sets the buffering output delay time.  This affects all the current modes and
+makes the connection sock to buffer outgoing data.  This means that in tunnel
+mode everything received from the listening socket is buffered for the connect
+socket.
+
+@item -n
+@itemx --dont-resolve
+Don't do DNS lookups on any of the specified addresses or hostnames, or names
+of port numbers from /etc/services.
+
+@item -r
+@itemx --randomize
+Randomizes the target remote ports ranges.  If more than one range is
+specified it will randomize the ports in the whole global range.
+
+@item -w
+@itemx --wait=SECS
+Specifies the starting inactivity delay after which netcat will exit with an
+error status.  In connect mode and in tunnel mode this specifies the timeout for
+the connecting socket, while in listen mode it specifies the time to wait for
+a VALID incoming connection (see listen mode).
+
+@item -T
+@itemx --telnet
+Answers the telnet codes as described in RFC0854.  This makes possible to use
+netcat to script telnet sessions.  The incoming telnet codes are parsed
+inside the receiving queue and are stripped off before forwarding the data
+as they were never received, so the application doesn't have to parse the
+codes itself (this behaviour can be disabled at compile time with
+--enable-oldtelnet or with --enable-compat).
+
+@item -z
+@itemx --zero
+Sets the zero I/O flag for the selected mode.  In connect mode it means that
+as soon as the port is open it is immediately shutdown and closed.  This may
+be useful for probing or scanning (even if there are faster portscanners
+out there, but this may be useful for scripting purposes).
+In listen mode, it makes netcat refusing all the incoming connections thus
+running in timeout (if set), or waiting forever.
+In both cases, no data is transfered.
+
+This option is incompatible with the tunnel mode.
+
+@end table
+@c man end
+
+@node The Connect Mode, The Listen Mode, Invoking, Top
+@chapter The Connect Mode
+@cindex connect
+In the connect mode, netcat connects to a remote host and simply links
+his stdin and stdout to the remote data stream.
+
+Basic usage is:
+
+netcat [options] hostname ports @dots{}
+
+The specified ports indicates actually all ports to connect to.  With
+normal operations netcat will sequentially (or randomly, if you specified
+the `-r' option) connect to all the specified ports and links stdin/stdout.
+No more than one port is used at once.
+
+Particular options:
+In this mode, the `-p' option specifies the source port for connection, but
+it should never be specified unless you know what you are doing. The `-w'
+(timeout) option specifies how long to wait for the connection to succeed
+(if the remote host connects but doesn't send any data, the timeout DOESN'T
+apply).
+
+@node The Listen Mode, The Tunnel Mode, The Connect Mode, Top
+@chapter The Listen Mode
+@cindex listen
+
+In listen mode, netcat stays idle listening on a port, specified by the `-p'
+switch, until some remote host connects. At this point, the basic behaviour
+is the same of the connect mode.
+
+Basic usage is:
+
+netcat -l -p port [remote_hostname] [remote_ports] @dots{}
+
+The remote hostname specifies which host is allowed to connect and from which
+ports. Usually these parameters are not specified, but if you want to sort
+out a special connection.
+
+@node The Tunnel Mode, Examples, The Listen Mode, Top
+@chapter The Tunnel Mode
+@cindex tunnel
+The tunnel mode ...
+
+@node Examples,  , The Tunnel Mode, Top
+@chapter Examples
+@cindex examples
+
+under writing ...
+
+@c man begin SYNOPSIS
+netcat [options] hostname port [port] @dots{}
+
+netcat -l -p port [options] [hostname] [port] @dots{}
+
+netcat -L hostname:port -p port [options] @dots{}
+@c man end
+
+@bye

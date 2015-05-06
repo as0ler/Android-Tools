@@ -1,0 +1,262 @@
+
+[*] Sun Jan 11 2004 - netcat v0.7.1
+
+  o Fixed bug in UDP connection code, using pktinfo support. [BUG #796765]
+  o Fixed a segfault in the DNS lookup routines, caused by invalid DNS
+    configurations.
+  o Fixed two compilation issues on SCO Unix 3.2 v 5.0.4. [BUG #857650],
+    [BUG #857657]
+  o Fixed bug in command line switch `-i' on non-linux OS such as Solaris.
+    [BUG #864780]
+  o The debugging support now works on libc's that don't allow NULL pointers
+    passed for string (`%s') modifiers.
+
+
+[*] Thu Aug 21 2003 - netcat v0.7.0
+
+  o Added command line switch `-c' (close), which shuts down the connection
+    on EOF from stdin without waiting for any answer from remote host.
+  o Some previously optionally included code related to signal handling is now
+    included in the default compilation.
+  o Now the SIGUSR1 signal is handled and prints the current sending/receiving
+    statistics to stderr, disregarding the verbosity level given.
+  o Added some development sheets for those that may want to study GNU Netcat's
+    development, in the doc/drafts directory.
+  o Fixed a bug in UDP listening mode without pktinfo support and specifying
+    the listening interface with `-s'.
+  o Now when connecting to an host by an alias of its, it won't write a warning
+    anymore but instead it will show the real name of the host.
+  o Various fixes for code portability.  Changed the debugging support routines,
+    and checking better what kind of compiler there is. [BUG #677625]
+  o Fixed a simple compile error on Solaris7. [BUG #788870]
+  o Fixed core dump in command line parsing routines when fgets() returned an
+    empty string. [BUG #791799]
+  o Now netcat is able to handle large amount of data, without overflowing the
+    socket queues anymore.
+
+
+[*] Tue Oct 15 2002 - netcat v0.6.1
+
+  o Fixed a compilation error in the "doc/" subdirectory when using virtual
+    paths.
+  o Fixed the socket creation function not setting the right sockopts.  This
+    caused netcat to fail opening sockets in some situations.
+  o Unified the SIOCGIF* and SIOCGLIF* extension in order to allow udphelper
+    compile on Solaris.
+  o Fixed a compilation error in udphelper.c on Solaris.
+  o Added type "in_port_t" to indicate port numbers in network byte order.
+    Also the "nc_port_t" object now contains the port number both in host byte
+    order and network byte order notation, which needs less conversions.
+  o Added slovak translation, thanks to Lubomir Sedlacik.
+
+
+[*] Thu Aug 22 2002 - netcat v0.6.0
+
+  o Rewritten the udp listening routines.  Now it uses the newly added
+    udphelper routines in order to allow a portable way to simulate two-ends
+    connections in UDP mode.
+  o Added the NEWS file containing release notes since version 0.2.1.
+  o Fixes and additions to the configure script.
+  o Now compiles even if random support is not present in the OS.
+  o Fixed `-V' option not working. [BUG #588761]
+  o Fixed a compilation (a missing header) error on some older BSD4 machines.
+  o Fixed hexdump of incoming data that was showing the wrong memory section.
+    This bug was introduced with the queues model in core.c.
+  o Now it is possible to disable the debugging support at runtime if it was
+    compiled in.
+  o Restored the command line switch `-e' (exec).
+  o Added new beta signal handling functions.
+  o Fixed connection failures not handled properly in tunnel mode.
+  o Fixed global return status to match the program specifications.
+  o Sockets shouldn't be left in a TIME_WAIT status anymore. [BUG #588961]
+  o Updated internal gettext support to version 0.11.5.
+  o The hexdump function now doesn't buffer more than one data block anymore.
+    This caused some packets not to be logged if Netcat dead unexpectedly.
+  o Fixed compiling/linking error on some BSD machines with external intl
+    library.
+  o Included significant rfcs in the distribution package.
+
+
+[*] Tue Jun 18 2002 - netcat v0.5.2
+
+  o Fixed a bug in UDP listen mode with unspecified port where Netcat was not
+    actually listening.
+  o Now a verbosity level 2 message is printed on listening.
+  o Made netcat_strid() public in network.c with some minor changes.
+  o More code cleanup.  Added a global variable netcat_mode to specify in which
+    mode netcat was launched.
+  o Fixed a preprocessor warning on some OSes.
+  o Many fixes to the resolver functions.  Now all weird DNS things that you
+    may find in the net are reported with the `-v' command line switch.
+  o Fixed a bug with some redirected input stream where it didn't check other
+    streams for new data anymore.
+  o Error messages on connect failure (both in connecting mode and tunneling
+    mode) were totally wrong.
+  o Statistics now use a human readable output and are printed even in the
+    listen mode and tunnel mode. [BUG #569618]
+  o Minor fixes on the errors output.
+  o More updates to the documentation.
+
+
+[*] Mon Jun 10 2002 - netcat v0.5.1
+
+  o Completely rewritten the function core_readwrite() in order to allow more
+    possibilities of features adding.
+  o Minor code cleanup.
+  o Fixed a variable not correctly initialized, causing netcat to bind() with
+    bogus information in certain circumstances.
+  o Changed the prototype of the telnet codes parsing function to match the
+    new objects-based design.
+  o With udp listening mode the first 1024 bytes of the first incoming packet
+    are no longer lost.
+  o More updates to the man and info documentation files.
+  o Now compiles correctly on Solaris (there was some configure checks
+    missing).
+  o Fixed a make error in the doc/ subdirectory.
+
+
+[*] Fri May 31 2002 - netcat v0.5.0
+
+  o Fixed the udp mode listen, which didn't allow any kind of safe read from
+    stdin.
+  o Generalized flagset.c to be more a library file.  Fixed some minor bugs in
+    the interface.
+  o Fixed a bug in ncprint() which didn't respect the EXIT flag if the
+    verbosity flag was also specified and not satisfied.
+  o Rewritten the core routines and arguments handling to allow a better
+    features support.
+  o Fixed several mis-behaviours for UDP protocol.
+  o Cleaned up the global namespace
+  o Now the -x option hexdumps also the source ip address in the introducing
+    message.
+  o Changed all the netcat defined types names.
+  o Restored the tunnel mode functionality.  Now it is even able to tunnel from
+    tcp to udp and vice-versa.
+  o The udp listening mode now recognizes the `-z' command line switch.
+  o Changed telnet command line switch from `-t' to `-T', added the change
+    notify to doc/migration.
+  o Fixed a design bug in the UDP protocol in listen mode.  The connection
+    should be created with the exact interface as identified by the incoming
+    packet.  Unfortunately this fix applies only on Linux because it's the
+    only OS that supports RFC 2292 extensions to IPv4.
+  o Updated the man and info documentation files.
+
+
+[*] Wed May 15 2002 - netcat v0.4.0
+
+  o Now netcat_socket_accept() recognizes a negative timeout parameter.
+  o Splitted core functions like readwrite() to core.c, this allows a more
+    modular programming and allows a better features-implementation.
+  o Moved some low level code from main.c to core.c
+  o Added UDP protocol support, but it is a little buggy still, because I have
+    got some logistic problems to solve before fixing the implementation.
+  o Fixed various socket leaks.
+  o Reimplemented command line switch `-z' for TCP protocol.
+  o Handled the listen mode-zero I/O case situation.
+  o Port ranges now are recognized even in the form min:max
+  o Fixed a bug in core_tcp_connect(), which didn't handle properly socket
+    connection failures on very fast hosts (such as localhost).
+  o Rewritten telnet support.  Now we have a more reliable implementation of
+    the RFC0854.  Netcat will also rewrite the incoming buffer with the telnet
+    codes stripped.
+  o Updated doc/migration with new incompatibilities found.
+  o Added configure option `--enable-oldtelnet', which restores the old nc110
+    telnet codes parsing policy.
+  o Added configure option `--enable-compat', which turnes on ALL the other
+    backwards compatibility switches.
+  o Cleanup of the main header file and to the global environment.
+  o First beta release!
+
+
+[*] Thu May  9 2002 - netcat v0.3.1
+
+  o Now "make install" also symlinks "nc" to the program file "netcat".
+  o More careful use of stderr/stdout for printing messages
+  o Updated file doc/migration
+  o Now it is possible to force the local source port when connecting to
+    somewhere using the -p option (this is not yet possible in tunnel mode).
+  o Fixed some output messages in netcat.c
+
+
+[*] Mon May  6 2002 - netcat v0.3.0
+
+  o Fixed netcat_resolvehost() to be more library function.
+  o Added function netcat_socket_new() to network.c
+  o Added functions netcat_socket_new_listen() and netcat_socket_accept()
+    to network.c
+  o configure now checks for important gettext external data.
+  o Updated files INSTALL and COPYING
+  o Added function netcat_inet_ntop() to network.c
+  o Fixed backwards incompatibility in netcat_fhexdump()
+  o Added file doc/migration.
+  o Fully rewrote the core part of the project.  The new core has total async
+    I/O support and is totally select() based.  It also introduces a new
+    command line arguments parsing style.  See the doc/migration file for more
+    information.
+  o Fixed the delayed (-i) output sending not displaying incoming data
+    immediately.
+  o Verbose messages are now printed automatically in debug mode.
+  o Changed copyrighter name
+  o Added command line switch `-L', activates the tunnel mode to the host and
+    port specified on the command line.
+  o Added function netcat_inet_pton() to network.c
+  o Added function ncprint() to misc.c, this allows a more powerful output
+    management and a more readability of the source code.
+  o Lots of fixes and improvements for portability
+
+
+[*] Wed May  1 2002 - netcat v0.2.2
+
+  o More fixes around the NLS (added the missing config.rpath script)
+  o Added lib directory that will contain all netcat related libraries.
+  o Added compatibility support (libcontrib) containing all the needed
+    functions not provided by the OS.
+  o Added GNU getopt to the compat library.
+  o More changes to the netcat_getport() function. Now it should catch every
+    kind of invalid input safely.
+
+
+[*] Tue Apr 30 2002 - netcat v0.2.1
+
+  o Various fixes to the Makefiles for the clean targets
+  o Fixed --enable-debug configure parameter
+  o Added configure option `--enable-oldhexdump', causes netcat to use the
+    old hexdump style rather than my new style.
+  o Added macros debug_d and debug_dv, respectively debug plus delay and
+    debug verbose plus delay.  Removed the old Debug macro.
+  o Restored command line switch `-w' (wait).
+  o Rewrote (again) netcat_resolvehost(), this time it's a little more
+    abstracted.
+  o Removed libtool support (it wasn't really needed at the moment)
+  o Added Native Language Support to the project
+  o Added the first traslation file (italian)
+
+
+[*] Mon Apr 29 2002 - netcat v0.2.0
+
+  o Changed the define HINF to typedef netcat_host.
+  o Removed comparehosts() function.
+  o Removed gethostpoop() function.
+  o Fixed some warnings.
+  o Added file network.c, containing function netcat_resolvehost(), which is
+    the equivalent of the old gethostpoop().
+  o Added debug() and debug_v() routines, to improve debugging output.
+    Debug() is now obsolete and will be removed soon.
+  o Added file proto.h, containing all externs and function declarations.
+  o Changed some global variable names and types
+  o Added function netcat_fhexdump() which substitutes the old oprint()
+    function.  Removed some unused global variables.
+  o Added command line switch `-x' (hexdump). Switch `-o' implies `-x'.
+  o Added command line switch `-V' (version).
+  o Added function netcat_getport() which substitutes the old getportpoop().
+    Updated references to the function and related struct.
+
+
+[*] Sun Apr 28 2002 - netcat v0.1.0
+
+  o Great cleanup of the original source files, this will be the base for the
+    rewrite.
+  o Rewrote command line reader from stdin (dynamically rebuilds argv based on
+    the input string.
+  o Added functions netcat_string_split() and netcat_commandline().
+

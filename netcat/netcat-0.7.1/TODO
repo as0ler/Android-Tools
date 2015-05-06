@@ -1,0 +1,67 @@
+
+This file contains all the broken/planned things to do within
+The GNU Netcat project.
+
+If you wish to contribute about one of these points, feel free
+to mail me if you need any further information.
+
+
+
+    TODO/bugs in Netcat
+==================================
+
+ o Write the README file!
+
+ o I need to study deeply the -g/-G options issue in order to make
+   them working properly.
+
+ o I need to fetch information about the history of this tool,
+   so I can give credits to the right people for the design and
+   the original code.
+
+ o The configure script must properly check res_init() by including
+   the <resolv.h> file.
+
+ o Netcat should be ported on Win32 too, but I haven't Win32 coding
+   experience unfortunately.  Anyone is willing to help?
+
+ o I think that two netcats with the `-T' (telnet) option enabled
+   may enter an infinite loop because of the weak telnet protocol
+   implementation. Check this and fix.
+
+ o Currently the telnet codes parsing function overrides the
+   send queue for the remote socket if it has to reply to some
+   telnet codes found in the incoming data.  Check what the RFC
+   says about this, since with the `-i' option this could be
+   a very important difference.
+
+ o The following execution of Netcat causes an assertion to trigger:
+      sh1~$ cat bigfile | netcat -l -p <some port>
+      sh2~$ netcat localhost <listening port>
+   This can be caused by a listening daemon that sends some data and
+   then closes the connection immediately.
+
+ o In core_udp_listen() there is a socket duplication that may cause
+   data loss in the receive queue.  Remove that code and solve that
+   issue in some other way.
+
+
+
+    Future features/Planning
+==================================
+
+ o Add IPv6 support
+
+    o This should be controlled by a command line switch like
+      `-6' and `-4'.
+
+    o Netcat should also be able to tunnel ipv6/ipv4 in tunnel
+      mode
+
+ o Add command line switch -X, --input-hexdump so that read from
+   stdin some valid hexdump-style data, and accepts it in some
+   standard forms (more than one)
+
+ o I'd like to add support for the OpenSSL library. I will first
+   need to solve license issues and then the implementation
+   issues.

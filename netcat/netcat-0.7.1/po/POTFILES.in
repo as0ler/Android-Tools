@@ -1,0 +1,9 @@
+# List of source files containing translatable strings.
+# (Filenames relative to top-level directory.)
+src/core.c
+src/flagset.c
+src/misc.c
+src/netcat.c
+src/network.c
+src/telnet.c
+src/udphelper.c

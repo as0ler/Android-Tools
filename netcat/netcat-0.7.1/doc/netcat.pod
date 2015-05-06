@@ -1,0 +1,260 @@
+=head1 NAME
+
+netcat - GNU Netcat Manual
+
+=head1 SYNOPSIS
+
+netcat [options] hostname port [port] ...
+
+netcat -l -p port [options] [hostname] [port] ...
+
+netcat -L hostname:port -p port [options] ...
+
+=head1 DESCRIPTION
+
+Netcat is a simple Unix utility which reads and writes data across network
+connections, using TCP or UDP protocol.
+It is designed to be a reliable "back-end" tool that can be used directly
+or easily driven by other programs and scripts.  At the same time, it is
+a feature-rich network debugging and exploration tool, since it can create
+almost any kind of connection you would need and has several interesting
+built-in capabilities.  Netcat, or "nc" as the original program was named,
+should have been supplied long ago as another one of those cryptic but
+standard Unix tools.
+
+Netcat has three main modes of functionality.  These are the connect mode,
+the listen mode, and the tunnel mode.
+
+The most common mode is the connect mode, which for example allows the output
+of a locally called command to be redirected for example to a remote netcat
+listening or to any other kind of daemon waiting for a connection.
+
+On the other hand, the listen mode can be used to obtain some kind of stream
+of data from a remote site.
+
+The most new feature is the tunnel mode, which is a powerful and reliable
+mode that allows tunneling a remote site towards any other remote site,
+allowing to specify for example from which interface create the connection
+and from which port.
+
+
+=head1 OPTIONS
+
+
+
+=head2 Basic Startup Options
+
+
+
+=over 4
+
+
+=item B<-V>
+
+
+=item B<--version>
+
+Display the version of netcat and exit.
+
+
+=item B<-h>
+
+
+=item B<--help>
+
+Print a help message describing most common netcat's command-line switches and
+a short description.
+
+
+=item B<-v>
+
+
+=item B<--verbose>
+
+Prints status messages, usually needed for using netcat as user front-end.  All
+messages are printed to stderr in order not to affect the data stream.
+
+Use this option double to get more messages.
+
+=back
+
+
+
+=head2 Protocol and Interface Options
+
+
+
+=over 4
+
+
+=item B<-t>
+
+
+=item B<--tcp>
+
+Selects the TCP protocol, this is the default.  It may be useful (see Tunnel Mode)
+to specify this option after for example the UDP option in order to allow a
+cross-protocol bridge between TCP and UDP.
+
+
+=item B<-u>
+
+
+=item B<--udp>
+
+Selects the UDP protocol.  See the --tcp option.
+
+
+=item B<-p NUM>
+
+
+=item B<--local-port=NUM>
+
+Selects the local port.  In listen and tunnel mode, it specifies which port
+to use for listening, while in connect mode it specifies the source port (the
+port from which originating the connection).
+
+If this option is not specified, the OS will assign a random available port.
+
+
+=item B<-s ADDRESS>
+
+
+=item B<--source=ADDRESS>
+
+Specifies the source address used for creating sockets.  In listen mode and
+tunnel mode this switch specifies the bound address, and it is generally a
+good idea not to specify this, which causes netcat to bind to a generic
+interface.
+In the connect mode, this switch is used to specify the source address for
+connecting to the outside world.  Again, if it's not specified a proper
+address for the destination route will be used.
+
+
+=item B<-P NUM>
+
+
+=item B<--tunnel-port=NUM>
+
+Same as --port, but affects only the connect phase (thus this option has no
+effect in listen mode).  This switch is useful in tunnel mode for specifying
+the source port for the connecting socket.
+
+
+=item B<-S ADDRESS>
+
+
+=item B<--tunnel-source=ADDRESS>
+
+Same as --source, but affects only the connect phase (thus this has no effects
+in listen mode).  This switch is useful in tunnel mode for specifying the
+source address for the connecting socket.
+
+
+=back
+
+
+
+=head2 Advanced Options
+
+
+
+=over 4
+
+
+=item B<-i SECS>
+
+
+=item B<--interval SECS>
+
+sets the buffering output delay time.  This affects all the current modes and
+makes the connection sock to buffer outgoing data.  This means that in tunnel
+mode everything received from the listening socket is buffered for the connect
+socket.
+
+
+=item B<-n>
+
+
+=item B<--dont-resolve>
+
+Don't do DNS lookups on any of the specified addresses or hostnames, or names
+of port numbers from /etc/services.
+
+
+=item B<-r>
+
+
+=item B<--randomize>
+
+Randomizes the target remote ports ranges.  If more than one range is
+specified it will randomize the ports in the whole global range.
+
+
+=item B<-w>
+
+
+=item B<--wait=SECS>
+
+Specifies the starting inactivity delay after which netcat will exit with an
+error status.  In connect mode and in tunnel mode this specifies the timeout for
+the connecting socket, while in listen mode it specifies the time to wait for
+a VALID incoming connection (see listen mode).
+
+
+=item B<-T>
+
+
+=item B<--telnet>
+
+Answers the telnet codes as described in RFC0854.  This makes possible to use
+netcat to script telnet sessions.  The incoming telnet codes are parsed
+inside the receiving queue and are stripped off before forwarding the data
+as they were never received, so the application doesn't have to parse the
+codes itself (this behaviour can be disabled at compile time with
+--enable-oldtelnet or with --enable-compat).
+
+
+=item B<-z>
+
+
+=item B<--zero>
+
+Sets the zero I/O flag for the selected mode.  In connect mode it means that
+as soon as the port is open it is immediately shutdown and closed.  This may
+be useful for probing or scanning (even if there are faster portscanners
+out there, but this may be useful for scripting purposes).
+In listen mode, it makes netcat refusing all the incoming connections thus
+running in timeout (if set), or waiting forever.
+In both cases, no data is transfered.
+
+This option is incompatible with the tunnel mode.
+
+
+=back
+
+
+=head1 SEE ALSO
+
+GNU Info entry for F<netcat>.
+
+=head1 AUTHOR
+
+Originally written by Giovanni Giacobbi E<lt>giovanni@giacobbi.netE<gt>.
+
+=head1 COPYRIGHT
+
+Copyright (c) 2002 - 2004  Giovanni Giacobbi
+
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being ``GNU General Public License'' and ``GNU Free
+Documentation License'', with no Front-Cover Texts, and with no
+Back-Cover Texts.  A copy of the license is included in the section
+entitled ``GNU Free Documentation License''.
+
