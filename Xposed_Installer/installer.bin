@@ -16,11 +16,11 @@
 
 #Making log output
 mount -o rw,remount /
-mount -o rw,remount /storage/emulated
+mount -o rw,remount /mnt/shell/emulated
 if [ ! -f "/test.txt" ]; then
 	> /test.txt
-	rm /storage/emulated/0/XposedInstallerLog.txt
-	sh /storage/emulated/0/installer.bin 2> /storage/emulated/0/XposedInstallerLog.txt
+	rm /mnt/shell/emulated/0/XposedInstallerLog.txt
+	sh /mnt/shell/emulated/0/installer.bin 2> /mnt/shell/emulated/0/XposedInstallerLog.txt
 	exit 1
 fi
 
@@ -28,22 +28,22 @@ rm /test.txt
 
 #============Checking Xposed zip============
 
-#echo "Checking Xposed zip" >> /storage/emulated/0/XposedInstallerLog.txt
-CHECK=`ls /storage/emulated/0/xposed-v*.zip`
+#echo "Checking Xposed zip" >> /mnt/shell/emulated/0/XposedInstallerLog.txt
+CHECK=`ls /mnt/shell/emulated/0/xposed-v*.zip`
 if [ $? != 0 ]; then
-	echo -e "\033[31mError: No se encuentra el zip de Xposed en /storage/emulated/0\e[0m"
+	echo -e "\033[31mError: No se encuentra el zip de Xposed en /mnt/shell/emulated/0\e[0m"
 	echo ""
 	sleep 2
 	exit 1
 fi
 
 #============Getting system properties============
-#echo "Getting system properties" >> /storage/emulated/0/XposedInstallerLog.txt
+#echo "Getting system properties" >> /mnt/shell/emulated/0/XposedInstallerLog.txt
 
-VERSION=`\ls /storage/emulated/0/xposed-v* | cut -c 28-30`
-SDK=`\ls /storage/emulated/0/xposed-v* | cut -c 35-36`
+VERSION=`\ls /mnt/shell/emulated/0/xposed-v* | cut -c 31-32`
+SDK=`\ls /mnt/shell/emulated/0/xposed-v* | cut -c 37-38`
 BITS64=`cat /system/build.prop | grep -c "arm64"`
-XPOSEDBITS64=`\ls /storage/emulated/0/xposed-v* | grep -c "arm64"`
+XPOSEDBITS64=`\ls /mnt/shell/emulated/0/xposed-v* | grep -c "arm64"`
 API=$(cat /system/build.prop | grep "ro.build.version.sdk=" | dd bs=1 skip=21 count=2)
 BRAND=`\cat /system/build.prop | grep "ro.product.brand" | cut -c 18-`
 MODEL=`\cat /system/build.prop | grep "ro.product.model" | cut -c 18-`
@@ -70,7 +70,7 @@ echo ""
 
 #============Displaying some colorfull info============
 
-#echo "Displaying some colorfull info" >> /storage/emulated/0/XposedInstallerLog.txt
+#echo "Displaying some colorfull info" >> /mnt/shell/emulated/0/XposedInstallerLog.txt
 if [ "$BRAND" == "Meizu" ]; then
  echo -e "\e[1;4mInformacion del dispositivo:\e[0m\n\e[93mMarca: \e[33m$BRAND\n\e[93mModelo: \e[33m$MODEL\n\e[93mRom: \e[33m$ROM\e[0m"
 echo ""
@@ -107,7 +107,7 @@ fi
 
 #============Xposed information============
  
- #echo "Xposed information" >> /storage/emulated/0/XposedInstallerLog.txt
+ #echo "Xposed information" >> /mnt/shell/emulated/0/XposedInstallerLog.txt
  echo ""
  echo -e "\e[104mEstas instalando Xposed $VERSION para SDK $SDK\e[0m\n\n\e[104mSi no es el correcto no llegara a instalarse\e[0m\n"
  echo ""
@@ -128,8 +128,8 @@ fi
  fi
  
 #============Some system checks============
- #echo "Some system chechs" >> /storage/emulated/0/XposedInstallerLog.txt
- #echo "busybox" >> /storage/emulated/0/XposedInstallerLog.txt
+ #echo "Some system chechs" >> /mnt/shell/emulated/0/XposedInstallerLog.txt
+ #echo "busybox" >> /mnt/shell/emulated/0/XposedInstallerLog.txt
  
  sleep 2.5
  if [ -f /system/xbin/busybox ]; then
@@ -143,7 +143,7 @@ fi
  fi
  echo ""
  echo ""
-  #echo "api" >> /storage/emulated/0/XposedInstallerLog.txt
+  #echo "api" >> /mnt/shell/emulated/0/XposedInstallerLog.txt
  if [ $SDK != $API ]; then
  	echo -e "\e[91mError\n SDK necesario: $API\n SDK que intentas poner: $SDK\e[0m"
  	echo -e "\e[91mDescargue el zip correcto, con SDK $API!\e[0m"
@@ -156,7 +156,7 @@ fi
  fi
 	echo ""
 	echo ""
-	# echo "abi" >> /storage/emulated/0/XposedInstallerLog.txt
+	# echo "abi" >> /mnt/shell/emulated/0/XposedInstallerLog.txt
 	if [ $TRUE64 = $TRUEXPOSEDBITS64 ]; then
 		if [ $TRUE64 = 64 ]; then
 			echo -e "\e[92m-La arquitectura del procesador es de 64 Bits\e[0m\n\e[92mAl igual que el Xposed que intenta instalar.\e[0m"
@@ -178,7 +178,7 @@ if [ $TRUE64 != $TRUEXPOSEDBITS64 ]; then
 	exit 0
 fi
 #============Starting setup & installing============
- #echo "setup" >> /storage/emulated/0/XposedInstallerLog.txt
+ #echo "setup" >> /mnt/shell/emulated/0/XposedInstallerLog.txt
 	echo ""
 	echo ""
 	sleep 1.2
@@ -189,11 +189,11 @@ fi
 	mount -o rw,remount /
 	echo -e "\e[96mCreando directorios...\e[0m"
 	echo ""
-	#echo "Unzip" >> /storage/emulated/0/XposedInstallerLog.txt
+	#echo "Unzip" >> /mnt/shell/emulated/0/XposedInstallerLog.txt
 	echo -e "\e[96mDescomprimiendo archivos...\e[0m"
 	mkdir -p /tmp/xposed
 	sleep 1
-	unzip -o /storage/emulated/0/xposed-v* -d /tmp/xposed
+	unzip -o /mnt/shell/emulated/0/xposed-v* -d /tmp/xposed
 	sleep 1
 	echo ""
 sleep 3
