@@ -1,0 +1,48 @@
+Manifest-Version: 1.0
+Created-By: 1.0 (Android SignApk)
+
+Name: system/lib/libsigchain.so
+SHA1-Digest: TxijKyywUREV3MbUw5j7dWRuPrE=
+
+Name: system/framework/XposedBridge.jar
+SHA1-Digest: 5iaP1/isxDSQ4YEYXa2XhgiIlr4=
+
+Name: system/lib/libart-compiler.so
+SHA1-Digest: lRIuJ+jiiv0C9ump2ChqS2o7Mck=
+
+Name: system/lib/libart-disassembler.so
+SHA1-Digest: +JYuM3hHocRa++IOXttvZU09OTg=
+
+Name: system/xposed.prop
+SHA1-Digest: seaRaPfjNNIhZIyJRFNnWIcqeGs=
+
+Name: system/lib/libxposed_art.so
+SHA1-Digest: XEqZ6vJbUzObPxx70fRt7APDpig=
+
+Name: system/bin/patchoat
+SHA1-Digest: 8Wwjdz1dunXAdCbiEHztfaoPpqk=
+
+Name: META-INF/com/google/android/update-binary
+SHA1-Digest: C/DwvA+TGV5S2Qr+J3VyAelUiQ4=
+
+Name: system/bin/dex2oat
+SHA1-Digest: IZo/xN430Juxp/2VSmgzmpcqbqM=
+
+Name: META-INF/com/google/android/flash-script.sh
+SHA1-Digest: U+5MrIbN/7Eaek2l86hdCw/085I=
+
+Name: system/bin/oatdump
+SHA1-Digest: QVQF+F4X8nAecb5HmWQelQ6g7vA=
+
+Name: META-INF/com/google/android/updater-script
+SHA1-Digest: pHTL0e32qpW/EJjMiESy3jLVODM=
+
+Name: META-INF/com/google/android/genymotion-ready
+SHA1-Digest: sWEEJZbF5c/JfNK4FBc0k1WizU8=
+
+Name: system/bin/app_process32_xposed
+SHA1-Digest: 0Bzx2Reuu++PW05VogWrVbR2yJE=
+
+Name: system/lib/libart.so
+SHA1-Digest: PatkyPWMzD/JL9D67AatOqVnksc=
+
